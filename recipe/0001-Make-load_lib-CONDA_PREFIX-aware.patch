@@ -1,24 +1,24 @@
-From 1ae4290acbed9e90acc5f7187379f9074e59dcb1 Mon Sep 17 00:00:00 2001
+From fe8a50a23cb5bca09a5df6728fadfe5613073404 Mon Sep 17 00:00:00 2001
 From: Nehal J Wani <nehaljw.kkd1@gmail.com>
 Date: Sun, 3 Dec 2017 18:01:56 +0000
 Subject: [PATCH] Make load_lib() CONDA_PREFIX aware
 
 ---
- lib/Crypto/Util/_raw_api.py | 13 ++++++++++++-
+ lib/Cryptodome/Util/_raw_api.py | 13 ++++++++++++-
  1 file changed, 12 insertions(+), 1 deletion(-)
 
-diff --git a/lib/Crypto/Util/_raw_api.py b/lib/Crypto/Util/_raw_api.py
-index 4aa142e..2182c7c 100644
---- a/lib/Crypto/Util/_raw_api.py
-+++ b/lib/Crypto/Util/_raw_api.py
+diff --git a/lib/Cryptodome/Util/_raw_api.py b/lib/Cryptodome/Util/_raw_api.py
+index c2ccb20..327ef43 100644
+--- a/lib/Cryptodome/Util/_raw_api.py
++++ b/lib/Cryptodome/Util/_raw_api.py
 @@ -28,6 +28,7 @@
  # POSSIBILITY OF SUCH DAMAGE.
  # ===================================================================
  
 +import os
  import sys
- from Crypto.Util.py3compat import byte_string
- from Crypto.Util._file_system import pycryptodome_filename
+ from Cryptodome.Util.py3compat import byte_string
+ from Cryptodome.Util._file_system import pycryptodome_filename
 @@ -119,7 +120,17 @@ except ImportError:
          import platform
          bits, linkage = platform.architecture()
@@ -39,5 +39,5 @@ index 4aa142e..2182c7c 100644
                  raise OSError("Cannot load library '%s'" % name)
              name = full_name
 -- 
-2.14.2
+2.16.1
 
