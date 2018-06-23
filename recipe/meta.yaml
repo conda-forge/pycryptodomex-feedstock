@@ -21,9 +21,10 @@ build:
 
 requirements:
   build:
+    - {{ compiler('c') }}
+  host:
     - python
     - setuptools
-    - toolchain
   run:
     - python
     - gmp   # [not win]
