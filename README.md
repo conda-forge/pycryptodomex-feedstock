@@ -16,14 +16,16 @@ primitives.
 Current build status
 ====================
 
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/pycryptodomex-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/pycryptodomex-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/pycryptodomex-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/pycryptodomex-feedstock)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/pycryptodomex-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/pycryptodomex-feedstock/branch/master)
+[![Linux](https://img.shields.io/circleci/project/github/conda-forge/pycryptodomex-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/pycryptodomex-feedstock)
+[![OSX](https://img.shields.io/travis/conda-forge/pycryptodomex-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/pycryptodomex-feedstock)
+[![Windows](https://img.shields.io/appveyor/ci/conda-forge/pycryptodomex-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/pycryptodomex-feedstock/branch/master)
 
 Current release info
 ====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/pycryptodomex/badges/version.svg)](https://anaconda.org/conda-forge/pycryptodomex)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/pycryptodomex/badges/downloads.svg)](https://anaconda.org/conda-forge/pycryptodomex)
+
+| Name | Downloads | Version | Platforms |
+| --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-pycryptodomex-green.svg)](https://anaconda.org/conda-forge/pycryptodomex) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pycryptodomex.svg)](https://anaconda.org/conda-forge/pycryptodomex) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pycryptodomex.svg)](https://anaconda.org/conda-forge/pycryptodomex) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pycryptodomex.svg)](https://anaconda.org/conda-forge/pycryptodomex) |
 
 Installing pycryptodomex
 ========================
