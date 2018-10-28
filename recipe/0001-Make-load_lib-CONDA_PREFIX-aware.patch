@@ -1,4 +1,4 @@
-From fe8a50a23cb5bca09a5df6728fadfe5613073404 Mon Sep 17 00:00:00 2001
+From cca32fa9d1a5be17edf096ea7533177a6e1c6de3 Mon Sep 17 00:00:00 2001
 From: Nehal J Wani <nehaljw.kkd1@gmail.com>
 Date: Sun, 3 Dec 2017 18:01:56 +0000
 Subject: [PATCH] Make load_lib() CONDA_PREFIX aware
@@ -8,7 +8,7 @@ Subject: [PATCH] Make load_lib() CONDA_PREFIX aware
  1 file changed, 12 insertions(+), 1 deletion(-)
 
 diff --git a/lib/Cryptodome/Util/_raw_api.py b/lib/Cryptodome/Util/_raw_api.py
-index c2ccb20..327ef43 100644
+index 9b3bad8..412839f 100644
 --- a/lib/Cryptodome/Util/_raw_api.py
 +++ b/lib/Cryptodome/Util/_raw_api.py
 @@ -28,6 +28,7 @@
@@ -16,10 +16,10 @@ index c2ccb20..327ef43 100644
  # ===================================================================
  
 +import os
+ import abc
  import sys
  from Cryptodome.Util.py3compat import byte_string
- from Cryptodome.Util._file_system import pycryptodome_filename
-@@ -119,7 +120,17 @@ except ImportError:
+@@ -164,7 +165,17 @@ except ImportError:
          import platform
          bits, linkage = platform.architecture()
          if "." not in name and not linkage.startswith("Win"):
@@ -39,5 +39,5 @@ index c2ccb20..327ef43 100644
                  raise OSError("Cannot load library '%s'" % name)
              name = full_name
 -- 
-2.16.1
+2.19.1
 
