@@ -11,7 +11,7 @@ libname = re.escape(os.environ['CONDA_PREFIX']) + '.*(libgmp.*.(dylib|so))'
 
 if not psutil.WINDOWS:
     # The import below will fail if we don't have gmp (on unix)
-    from Cryptodome.Math import _Numbers_gmp as NumbersGMP
+    from Cryptodome.Math import _IntegerGMP as IntegerGMP
 
     # Make sure that gmp is indeed loaded in memory
     p = psutil.Process(os.getpid())
