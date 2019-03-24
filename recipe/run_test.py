@@ -2,6 +2,7 @@ import os
 import re
 import psutil
 import platform
+import subprocess
 
 libname = re.escape(os.environ['CONDA_PREFIX']) + '.*(libgmp.*.(dylib|so))'
 
@@ -14,5 +15,10 @@ if not psutil.WINDOWS:
     from Cryptodome.Math import _IntegerGMP as IntegerGMP
 
     # Make sure that gmp is indeed loaded in memory
-    p = psutil.Process(os.getpid())
-    assert any(bool(re.match(libname, x.path)) for x in p.memory_maps())
+    if psutil.MACOS:
+        vmmap_out = subprocess.check_output(['vmmap', '-w', str(os.getpid())])
+        assert re.search(re.compile(libname), vmmap_out.decode('utf-8'))
+
+    if psutil.LINUX:
+        p = psutil.Process(os.getpid())
+        assert any(bool(re.match(libname, x.path)) for x in p.memory_maps())
