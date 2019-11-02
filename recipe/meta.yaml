@@ -1,6 +1,6 @@
 {% set name = "pycryptodomex" %}
-{% set version = "3.9.0" %}
-{% set sha256 = "8b604f4fa1de456d6d19771b01c2823675a75a2c60e51a6b738f71fdfe865370" %}
+{% set version = "3.9.1" %}
+{% set sha256 = "478cce6245e8ff8cda8f733ef1a1161ee6bf5aaa45312e1ace6c7b80fbc1e01f" %}
 
 package:
   name: {{ name|lower }}
