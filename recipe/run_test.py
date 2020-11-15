@@ -17,6 +17,7 @@ if not psutil.WINDOWS:
     # Make sure that gmp is indeed loaded in memory
     if psutil.MACOS:
         vmmap_out = subprocess.check_output(['vmmap', '-w', str(os.getpid())])
+        print(vmmap_out.decode('utf-8'))
         assert re.search(re.compile(libname), vmmap_out.decode('utf-8'))
 
     if psutil.LINUX:
