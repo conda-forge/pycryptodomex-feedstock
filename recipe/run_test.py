@@ -16,8 +16,8 @@ if not psutil.WINDOWS:
 
     # Make sure that gmp is indeed loaded in memory
     if psutil.MACOS:
-        vmmap_out = subprocess.check_output(['vmmap', '-w', str(os.getpid())])
-        assert re.search(re.compile(libname), vmmap_out.decode('utf-8'))
+        lsof_out = subprocess.check_output(['lsof', '-p', str(os.getpid())])
+        assert re.search(re.compile(libname), lsof_out.decode('utf-8'))
 
     if psutil.LINUX:
         p = psutil.Process(os.getpid())
