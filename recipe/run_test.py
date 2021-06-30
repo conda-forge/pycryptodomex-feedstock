@@ -21,4 +21,7 @@ if not psutil.WINDOWS:
 
     if psutil.LINUX:
         p = psutil.Process(os.getpid())
+        print(len(p.memory_maps()))
+        for x in p.memory_maps():
+            print(x.path)
         assert any(bool(re.match(libname, x.path)) for x in p.memory_maps())
