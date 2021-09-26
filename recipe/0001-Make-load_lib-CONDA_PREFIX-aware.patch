@@ -1,27 +1,19 @@
-From cca32fa9d1a5be17edf096ea7533177a6e1c6de3 Mon Sep 17 00:00:00 2001
+From fbfc8c28893515d4d431aa28b54c7634fa31b005 Mon Sep 17 00:00:00 2001
 From: Nehal J Wani <nehaljw.kkd1@gmail.com>
 Date: Sun, 3 Dec 2017 18:01:56 +0000
 Subject: [PATCH] Make load_lib() CONDA_PREFIX aware
 
 ---
- lib/Cryptodome/Util/_raw_api.py | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+ lib/Cryptodome/Util/_raw_api.py | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
 
 diff --git a/lib/Cryptodome/Util/_raw_api.py b/lib/Cryptodome/Util/_raw_api.py
-index 9b3bad8..412839f 100644
+index cf565daa..85c33f6a 100644
 --- a/lib/Cryptodome/Util/_raw_api.py
 +++ b/lib/Cryptodome/Util/_raw_api.py
-@@ -28,6 +28,7 @@
- # POSSIBILITY OF SUCH DAMAGE.
- # ===================================================================
- 
-+import os
- import abc
- import sys
- from Cryptodome.Util.py3compat import byte_string
-@@ -164,7 +165,17 @@ except ImportError:
-         import platform
-         bits, linkage = platform.architecture()
+@@ -183,7 +183,17 @@ except ImportError:
+             cached_architecture[:] = platform.architecture()
+         bits, linkage = cached_architecture
          if "." not in name and not linkage.startswith("Win"):
 -            full_name = find_library(name)
 +            _name = name
@@ -39,5 +31,5 @@ index 9b3bad8..412839f 100644
                  raise OSError("Cannot load library '%s'" % name)
              name = full_name
 -- 
-2.19.1
+2.31.1
 
