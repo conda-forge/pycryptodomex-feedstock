@@ -17,8 +17,41 @@ if not psutil.WINDOWS:
     # Make sure that gmp is indeed loaded in memory
     if psutil.MACOS:
         lsof_out = subprocess.check_output(['lsof', '-p', str(os.getpid())])
-        assert re.search(re.compile(libname), lsof_out.decode('utf-8'))
+        assert re.search(re.compile(libname), os.fsdecode(lsof_out))
 
     if psutil.LINUX:
         p = psutil.Process(os.getpid())
-        assert any(bool(re.match(libname, x.path)) for x in p.memory_maps())
+        found_in_procfs = any(bool(re.match(libname, x.path)) for x in p.memory_maps())
+
+        # https://travis-ci.community/t/procfs-provides-paths-outside-of-container/9525
+        if not found_in_procfs:
+            # Modified version of https://stackoverflow.com/a/22581592/1005215
+            from ctypes import *
+
+            # this struct will be passed as a ponter,
+            # so we don't have to worry about the right layout
+            class dl_phdr_info(Structure):
+              _fields_ = [
+                ('padding0', c_void_p), # ignore it
+                ('dlpi_name', c_char_p),
+                                        # ignore the reset
+              ]
+
+
+            # call back function, I changed c_void_p to c_char_p
+            callback_t = CFUNCTYPE(c_int,
+                                   POINTER(dl_phdr_info),
+                                   POINTER(c_size_t), c_char_p)
+
+            dl_iterate_phdr = CDLL('libc.so.6').dl_iterate_phdr
+            # I changed c_void_p to c_char_p
+            dl_iterate_phdr.argtypes = [callback_t, c_char_p]
+            dl_iterate_phdr.restype = c_int
+
+            def callback(info, size, data):
+              fname = os.fsdecode(info.contents.dlpi_name)
+              if re.match(libname, fname):
+                  return 1
+              return 0
+
+            assert dl_iterate_phdr(callback_t(callback), None)
