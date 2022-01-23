@@ -1,6 +1,6 @@
 {% set name = "pycryptodomex" %}
-{% set version = "3.12.0" %}
-{% set sha256 = "922e9dac0166e4617e5c7980d2cff6912a6eb5cb5c13e7ece222438650bd7f66" %}
+{% set version = "3.13.0" %}
+{% set sha256 = "63443230247837dd03c5d4028cae5cb2e6793a9ae110e321798bee48a04ff3e9" %}
 
 package:
   name: {{ name|lower }}
@@ -8,7 +8,7 @@ package:
 
 source:
   fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.zip
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
   patches:
     # ctypes.util.find_library() isn't CONDA_PREFIX aware :'(
