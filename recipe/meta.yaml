@@ -1,6 +1,6 @@
 {% set name = "pycryptodomex" %}
-{% set version = "3.14.1" %}
-{% set sha256 = "2ce76ed0081fd6ac8c74edc75b9d14eca2064173af79843c24fa62573263c1f2" %}
+{% set version = "3.15.0" %}
+{% set sha256 = "7341f1bb2dadb0d1a0047f34c3a58208a92423cdbd3244d998e4b28df5eac0ed" %}
 
 package:
   name: {{ name|lower }}
@@ -16,7 +16,7 @@ source:
     - 0001-Make-load_lib-CONDA_PREFIX-aware.patch  # [unix]
 
 build:
-  number: 1
+  number: 0
   script: '{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv '
 
 requirements:
