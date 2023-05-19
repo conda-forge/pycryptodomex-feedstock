@@ -1,11 +1,11 @@
-About pycryptodomex
-===================
+About pycryptodomex-feedstock
+=============================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pycryptodomex-feedstock/blob/main/LICENSE.txt)
 
 Home: http://www.pycryptodome.org
 
 Package license: Public Domain/BSD 2-Clause/OCB/MPIR
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pycryptodomex-feedstock/blob/main/LICENSE.txt)
 
 Summary: Cryptographic library for Python
 
