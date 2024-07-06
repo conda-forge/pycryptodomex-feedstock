@@ -20,8 +20,14 @@ if not psutil.WINDOWS:
         assert re.search(re.compile(libname), os.fsdecode(lsof_out))
 
     if psutil.LINUX:
-        p = psutil.Process(os.getpid())
-        found_in_procfs = any(bool(re.match(libname, x.path)) for x in p.memory_maps())
+        pid = os.getpid()
+        try:
+            p = psutil.Process(pid)
+            found_in_procfs = any(bool(re.match(libname, x.path)) for x in p.memory_maps())
+        except:
+	    # https://github.com/giampaolo/psutil/issues/2430
+            with open(f"/proc/{pid}/smaps", "r") as smaps:
+               found_in_procfs = re.search(re.compile(libname), smaps.read())
 
         # https://travis-ci.community/t/procfs-provides-paths-outside-of-container/9525
         if not found_in_procfs:
