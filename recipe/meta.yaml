@@ -16,7 +16,7 @@ source:
     - 0001-Make-load_lib-CONDA_PREFIX-aware.patch  # [unix]
 
 build:
-  number: 0
+  number: 1
   script: '{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv '
 
 requirements:
@@ -28,6 +28,7 @@ requirements:
   host:
     - python
     - pip
+    - setuptools
   run:
     - python
     - gmp   # [not win]
@@ -59,7 +60,7 @@ test:
 
 about:
   home: http://www.pycryptodome.org
-  license: Public Domain/BSD 2-Clause/OCB/MPIR
+  license: Public Domain/BSD 2-Clause
   license_file: LICENSE.rst
   summary: Cryptographic library for Python
   description: |
