@@ -5,7 +5,7 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pycryptodomex-f
 
 Home: http://www.pycryptodome.org
 
-Package license: Public Domain/BSD 2-Clause/OCB/MPIR
+Package license: Public Domain/BSD 2-Clause
 
 Summary: Cryptographic library for Python
 
