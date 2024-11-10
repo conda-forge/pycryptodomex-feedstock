@@ -1,0 +1,35 @@
+From 512a0a37ead0f220b22cad3a15526565a61bd196 Mon Sep 17 00:00:00 2001
+From: Nehal J Wani <nehaljw.kkd1@gmail.com>
+Date: Sun, 3 Dec 2017 18:01:56 +0000
+Subject: [PATCH] Make load_lib() look in ${sys.prefix}/lib first
+
+---
+ lib/Cryptodome/Util/_raw_api.py | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
+
+diff --git a/lib/Cryptodome/Util/_raw_api.py b/lib/Cryptodome/Util/_raw_api.py
+index cd64ac8..22d0888 100644
+--- a/lib/Cryptodome/Util/_raw_api.py
++++ b/lib/Cryptodome/Util/_raw_api.py
+@@ -189,7 +189,17 @@ except ImportError:
+             cached_architecture[:] = platform.architecture()
+         bits, linkage = cached_architecture
+         if "." not in name and not linkage.startswith("Win"):
+-            full_name = find_library(name)
++            _name = name
++            if 'lib' not in _name:
++                _name = 'lib' + _name
++            if sys.platform == 'darwin':
++                _name += '.dylib'
++            elif sys.platform.startswith('linux'):
++                _name += '.so'
++            full_name = os.path.join(sys.prefix, 'lib', _name)
++            # If not found in sys.prefix, find it via ctypes.util
++            if not os.path.isfile(full_name):
++                full_name = find_library(name)
+             if full_name is None:
+                 raise OSError("Cannot load library '%s'" % name)
+             name = full_name
+-- 
+2.46.1
+
