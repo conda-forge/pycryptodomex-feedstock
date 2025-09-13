@@ -16,7 +16,7 @@ source:
     - 0001-Make-load_lib-look-in-sys.prefix-lib-first.patch  # [unix]
 
 build:
-  number: 0
+  number: 1
   script: '{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vvv '
 
 requirements:
